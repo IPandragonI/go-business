@@ -6,6 +6,7 @@ import {TypeOrmModule} from "@nestjs/typeorm";
 import {buildTypeOrmConfig} from "../config/typeorm.config";
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { ProjectsModule } from './modules/projects/projects.module';
 
 @Module({
     imports: [ConfigModule.forRoot({isGlobal: true}),
@@ -16,7 +17,8 @@ import { AuthModule } from './auth/auth.module';
                 buildTypeOrmConfig(configService),
         }),
         UsersModule,
-        AuthModule],
+        AuthModule,
+        ProjectsModule],
     controllers: [AppController],
     providers: [AppService],
 })

@@ -1,4 +1,4 @@
-import { IsEmail, IsEnum, IsOptional, IsString, Length } from 'class-validator';
+import {IsEmail, IsEnum, IsOptional, IsString, Length, Matches} from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { UserRole } from '../entities/userRole.enum';
 
@@ -21,6 +21,9 @@ export class UpdateUserDto {
   @ApiPropertyOptional({ example: 'P@ssw0rd!', description: 'Mot de passe (min 8 caractères)' })
   @IsString()
   @Length(8, 128)
+  @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, {
+    message: 'Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial',
+  })
   @IsOptional()
   password?: string;
 
