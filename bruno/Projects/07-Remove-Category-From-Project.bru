@@ -1,0 +1,20 @@
+meta {
+  name: Remove Category from Project
+  type: http
+  seq: 7
+}
+
+delete {
+  url: {{baseUrl}}/projects/1/categories/1
+}
+
+headers {
+  Authorization: Bearer {{accessToken}}
+}
+
+tests {
+  test("Status is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+}
+

@@ -1,0 +1,24 @@
+meta {
+  name: Get Project Investment Stats
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/investments/project/1/stats
+}
+
+headers {
+  Authorization: Bearer {{accessToken}}
+}
+
+tests {
+  test("Status is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  test("Stats has properties", function() {
+    expect(res.body).to.have.property('totalFunded');
+    expect(res.body).to.have.property('investorCount');
+  });
+}
+

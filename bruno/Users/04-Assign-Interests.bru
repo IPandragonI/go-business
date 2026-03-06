@@ -1,0 +1,30 @@
+meta {
+  name: Assign Interests to User
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/users/interests
+  body: json
+}
+
+headers {
+  Authorization: Bearer {{accessToken}}
+}
+
+body:json {
+  {
+    "interestIds": [1, 2, 3]
+  }
+}
+
+tests {
+  test("Status is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  test("User has interests", function() {
+    expect(res.body).to.have.property('interests');
+  });
+}
+

@@ -1,0 +1,28 @@
+meta {
+  name: Create Interest (Admin)
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/interests
+  body: json
+}
+
+headers {
+  Authorization: Bearer {{accessToken}}
+}
+
+body:json {
+  {
+    "name": "Web3",
+    "description": "Web3 et technologies décentralisées"
+  }
+}
+
+tests {
+  test("Status is 201", function() {
+    expect(res.getStatus()).to.equal(201);
+  });
+}
+

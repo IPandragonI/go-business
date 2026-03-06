@@ -1,0 +1,23 @@
+meta {
+  name: Get User Interests
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/users/interests
+}
+
+headers {
+  Authorization: Bearer {{accessToken}}
+}
+
+tests {
+  test("Status is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  test("Response is array", function() {
+    expect(res.body).to.be.an('array');
+  });
+}
+

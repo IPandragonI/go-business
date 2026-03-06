@@ -1,0 +1,31 @@
+meta {
+  name: Register Investor
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/auth/register
+  body: json
+}
+
+body:json {
+  {
+    "email": "investor.test@example.com",
+    "password": "Password123!",
+    "firstname": "Jean",
+    "lastname": "Dupont",
+    "role": "investor"
+  }
+}
+
+tests {
+  test("Status is 201", function() {
+    expect(res.getStatus()).to.equal(201);
+  });
+  test("Response contains user", function() {
+    expect(res.body).to.have.property('id');
+    expect(res.body).to.have.property('email');
+  });
+}
+

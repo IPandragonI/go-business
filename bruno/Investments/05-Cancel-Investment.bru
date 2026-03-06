@@ -1,0 +1,23 @@
+meta {
+  name: Cancel Investment
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/investments/1
+}
+
+headers {
+  Authorization: Bearer {{accessToken}}
+}
+
+tests {
+  test("Status is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  test("Response has deleted property", function() {
+    expect(res.body).to.have.property('deleted');
+  });
+}
+

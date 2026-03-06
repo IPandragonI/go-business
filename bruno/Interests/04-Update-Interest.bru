@@ -1,0 +1,28 @@
+meta {
+  name: Update Interest (Admin)
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/interests/1
+  body: json
+}
+
+headers {
+  Authorization: Bearer {{accessToken}}
+}
+
+body:json {
+  {
+    "name": "Technologie Updated",
+    "description": "Innovation technologique et développement logiciel - Updated"
+  }
+}
+
+tests {
+  test("Status is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+}
+

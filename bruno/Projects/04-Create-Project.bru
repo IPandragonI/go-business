@@ -1,0 +1,32 @@
+meta {
+  name: Create Project (Contractor)
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/projects
+  body: json
+}
+
+headers {
+  Authorization: Bearer {{accessToken}}
+}
+
+body:json {
+  {
+    "title": "New AI Platform",
+    "description": "A new platform for AI-powered analytics",
+    "budget": 150000
+  }
+}
+
+tests {
+  test("Status is 201", function() {
+    expect(res.getStatus()).to.equal(201);
+  });
+  test("Project has ID", function() {
+    expect(res.body).to.have.property('id');
+  });
+}
+

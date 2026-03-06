@@ -1,0 +1,23 @@
+meta {
+  name: Get All Users (Admin)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/users
+}
+
+headers {
+  Authorization: Bearer {{accessToken}}
+}
+
+tests {
+  test("Status is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  test("Response is array", function() {
+    expect(res.body).to.be.an('array');
+  });
+}
+
